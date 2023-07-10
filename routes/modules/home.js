@@ -11,5 +11,6 @@ router.get('/', (req, res) => {
     .then(restaurants => res.render('index', { restaurants })) // 將資料傳給 index 樣板
     .catch(error => console.error(error)) // 錯誤處理
 })
+
 // 匯出路由模組
 module.exports = router
