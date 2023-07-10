@@ -5,6 +5,7 @@ const mongoose = require('mongoose') // 載入 mongoose
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
+const routes = require('./routes')
 const app = express()
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -40,15 +41,18 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 app.use(methodOverride('_method'))
+app.use(routes)
 // Handle request and response here
+/*
 app.get('/', (req, res) => {
   //res.render("index", { restaurants: restaurantList.results })
-  Restaurant.find() // 取出 Todo model 裡的所有資料
+  Restaurant.find() // 取出  model 裡的所有資料
     .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
     .then(restaurants => res.render('index', { restaurants })) // 將資料傳給 index 樣板
     .catch(error => console.error(error)) // 錯誤處理
 })
-
+*/
+/*
 //------CREATE_start-----
 app.get('/restaurants/new', (req, res) => {
   return res.render('new')
@@ -131,7 +135,7 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
     .then(restaurant => res.render('show', { restaurant }))
     .catch(error => console.log(error))
 })
-
+*/
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
   return Restaurant.find({
