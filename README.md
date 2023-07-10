@@ -1,7 +1,7 @@
 
 <h1>我的餐廳清單<h1>
   
-![cv](./public/stylesheets/a7.png)
+![cv](./public/stylesheets/a8.png)
 
 <h2>介紹</h2>
 餐廳清單，可以瀏覽餐廳、查看詳細資訊、甚至連結到地圖。
@@ -12,6 +12,8 @@
 - 連結餐廳的地址到 Google 地圖
 - 搜尋特定餐廳
 - CRUD
+- 參考 RESTful 設計，運用 HTTP 動詞來讓路由帶有語義
+- 使用 express.Router 獨立路由器，並規劃路由模組
 
 <h2>開始使用</h2>
 1. 請先確認有安裝 node.js 與 npm
@@ -65,4 +67,4 @@
 - mongoose 5.9.7
 - body-parser 1.20.2
 - dotenv 16.3.1
-
+- method-override 3.0.0
