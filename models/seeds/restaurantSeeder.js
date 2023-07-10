@@ -1,21 +1,9 @@
-const mongoose = require("mongoose")
-const restaurantList = require("../../restaurant.json") //載入restaurant的json file
-const Restaurant = require("../restaurant") // 載入 restaurant model
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config()
-}
+//const mongoose = require("mongoose")
+const db = require('../../config/mongoose')
+const restaurantList = require('../../restaurant.json') //載入restaurant的json file
+const Restaurant = require('../restaurant') // 載入 restaurant model
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-const db = mongoose.connection
-db.on("error", () => {
-  console.log("mongodb error!")
-})
-db.once("open", () => {
-  console.log("mongodb connected!")
-
+db.once('open', () => {
   for (let i = 0; i < 8; i++) {
     Restaurant.create({
       name: restaurantList.results[i].name,
@@ -28,4 +16,5 @@ db.once("open", () => {
       description: restaurantList.results[i].description,
     })
   }
+  console.log('Done!')
 })

@@ -1,12 +1,14 @@
 // Include express from node_modules
 const express = require('express')
-const mongoose = require('mongoose') // 載入 mongoose
+//const mongoose = require('mongoose') // 載入 mongoose
 // 加入這段 code, 僅在非正式環境時, 使用 dotenv
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 const routes = require('./routes')
+require('./config/mongoose')
 const app = express()
+/*
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -22,7 +24,7 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected!')
 })
-
+*/
 // Define server related variables
 const port = 3000
 
