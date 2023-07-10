@@ -1,10 +1,10 @@
+
 <h1>我的餐廳清單<h1>
   
-![cv](./public/stylesheets/A7.PNG)
+![cv](./public/stylesheets/a7.png)
 
 <h2>介紹</h2>
-餐廳清單、查看詳細資訊、甚至連結到地圖。
-
+餐廳清單，可以瀏覽餐廳、查看詳細資訊、甚至連結到地圖。
 <h3>功能</h3>
 
 - 查看所有餐廳
@@ -24,13 +24,13 @@
    npm install
    ```
 
-4. 安裝完畢後，輸入以下來載入種子資料：
-
+4. 安裝完畢後，繼續輸入：
+載入種子資料
    ```bash
    npm run seed
    ```
-5. 安裝完畢後，輸入以下來啟動網頁：
 
+啟動網頁
    ```bash
    npm run start
    ```
@@ -40,20 +40,19 @@
    ```bash
    Listening on http://localhost:3000
    ```
+若要新增資料,可使用以下範例
+   ```bash
+   name : $任意字串
+   category: $任意字串
+   image : https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg
+   location: $任意字串
+   phone: $任意字串
+   google_map : https://goo.gl/maps/BJdmLuVdDbw
+   rating: $任意數字
+   description: $任意字串
+   ```
 
-7. 若要使用新增功能 , 可使用以下範例資料:
-```bash
-name: $任意字串,
-category: $任意字串,
-image: https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg,
-location: $任意字串,
-phone: $任意字串,
-google_map: https://goo.gl/maps/BJdmLuVdDbw,
-rating: $任意數字,
-description:$任意字串
-```
-   
-8. 若欲暫停使用
+7. 若欲暫停使用
 
    ```bash
    ctrl + c
@@ -64,5 +63,6 @@ description:$任意字串
 - Express 4.16.4
 - Express-Handlebars 4.0.2
 - mongoose 5.9.7
+- body-parser 1.20.2
 - dotenv 16.3.1
- 
+

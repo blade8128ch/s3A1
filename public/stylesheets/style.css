@@ -46,6 +46,10 @@ header {
   color: white;
 }
 
+.create {
+  color: black;
+}
+
 .form-control:focus {
   box-shadow: none;
   border-color: #ced4da;
