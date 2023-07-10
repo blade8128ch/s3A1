@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
 //------CREATE_end-----
 
 //------UPDATE_start-----
-//app.post("/restaurants/:restaurant_id/edit", (req, res) => {
+
 router.put('/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
   const name = req.body.name // 從 req.body 拿出表單裡的 name 資料
