@@ -5,6 +5,9 @@ const Restaurant = require('../restaurant') // 載入 restaurant model
 
 db.once('open', () => {
   Restaurant.create(restaurantList.results)
-
-  console.log('Done!')
+    .then(() => {
+      console.log('restaurantSeeder done!')
+      db.close()
+    })
+    .catch(err => console.log(err))
 })
