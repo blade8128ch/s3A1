@@ -11,5 +11,24 @@ router.get('/', (req, res) => {
     .catch(error => console.error(error)) // 錯誤處理
 })
 
+router.get('/search', (req, res) => {
+  if (!req.query.keyword) {
+    return res.redirect('/')
+  }
+  const keyword = req.query.keyword
+
+  console.log(req.query)
+  return Restaurant.find({
+    $or: [
+      { name: { $regex: keyword, $options: 'xi' } },
+      { category: { $regex: keyword, $options: 'xi' } },
+    ],
+  })
+    .lean()
+    .then(restaurants => {
+      res.render('index', { restaurants: restaurants, keyword: keyword })
+    })
+    .catch(error => console.log(error))
+})
 // 匯出路由模組
 module.exports = router
