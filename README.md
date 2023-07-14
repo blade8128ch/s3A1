@@ -80,3 +80,4 @@
 - dotenv 16.3.1
 - method-override 3.0.0
 - bcryptjs  2.4.3
+- passport 0.4.1
