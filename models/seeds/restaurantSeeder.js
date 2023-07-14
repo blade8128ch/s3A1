@@ -1,13 +1,72 @@
-//const mongoose = require("mongoose")
 const db = require('../../config/mongoose')
-const restaurantList = require('../../restaurant.json') //載入restaurant的json file
-const Restaurant = require('../restaurant') // 載入 restaurant model
+const restaurantList = require('../../restaurant.json')
+const Restaurant = require('../restaurant')
+const User = require('../user')
+
+const bcrypt = require('bcryptjs')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+const SEED_USER_01 = {
+  email: 'user1@example.com',
+  password: '12345678',
+  restaurantOwns: [1, 2, 3], //陣列內容為restaurant的id
+}
+const SEED_USER_02 = {
+  email: 'user2@example.com',
+  password: '12345678',
+  restaurantOwns: [4, 5, 6],
+}
 
 db.once('open', () => {
-  Restaurant.create(restaurantList.results)
-    .then(() => {
-      console.log('restaurantSeeder done!')
-      db.close()
+  bcrypt
+    .genSalt(10)
+    .then(salt => bcrypt.hash(SEED_USER_01.password, salt))
+    .then(hash =>
+      User.create({
+        email: SEED_USER_01.email,
+        password: hash,
+      })
+    )
+    .then(user => {
+      const userId = user._id
+      return Promise.all(
+        Array.from({ length: SEED_USER_01.restaurantOwns.length }, (_, i) =>
+          Restaurant.create({
+            ...restaurantList.results[SEED_USER_01.restaurantOwns[i]],
+            userId,
+          })
+        )
+      )
     })
-    .catch(err => console.log(err))
+    .then(() => {
+      console.log('User1 is done.')
+      //process.exit()
+    })
+
+  bcrypt
+    .genSalt(10)
+    .then(salt => bcrypt.hash(SEED_USER_02.password, salt))
+    .then(hash =>
+      User.create({
+        email: SEED_USER_02.email,
+        password: hash,
+      })
+    )
+    .then(user => {
+      const userId = user._id
+      return Promise.all(
+        Array.from({ length: SEED_USER_02.restaurantOwns.length }, (_, i) =>
+          Restaurant.create({
+            ...restaurantList.results[SEED_USER_02.restaurantOwns[i]],
+            userId,
+          })
+        )
+      )
+    })
+    .then(() => {
+      console.log('User2 is done.')
+      process.exit()
+    })
 })
