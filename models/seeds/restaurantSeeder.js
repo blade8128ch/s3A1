@@ -34,7 +34,7 @@ db.once('open', () => {
       return Promise.all(
         Array.from({ length: SEED_USER_01.restaurantOwns.length }, (_, i) =>
           Restaurant.create({
-            ...restaurantList.results[SEED_USER_01.restaurantOwns[i]],
+            ...restaurantList.results[SEED_USER_01.restaurantOwns[i] - 1],
             userId,
           })
         )
@@ -59,7 +59,7 @@ db.once('open', () => {
       return Promise.all(
         Array.from({ length: SEED_USER_02.restaurantOwns.length }, (_, i) =>
           Restaurant.create({
-            ...restaurantList.results[SEED_USER_02.restaurantOwns[i]],
+            ...restaurantList.results[SEED_USER_02.restaurantOwns[i] - 1],
             userId,
           })
         )
